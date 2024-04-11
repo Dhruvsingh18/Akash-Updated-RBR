@@ -314,7 +314,7 @@ public class Akash_RBR_World extends LinearOpMode {
                     boolean switcheroo = true;
                     long timeOut = System.currentTimeMillis();
 
-                    while (switcheroo && (timeOut + 3500) < (System.currentTimeMillis())) { // Loop while switcheroo is true and 5 seconds have not passed
+                    while (switcheroo && (timeOut + 4000) < (System.currentTimeMillis())) { // Loop while switcheroo is true and 5 seconds have not passed
 
                         if ((((DistanceSensor) RampSensor).getDistance(DistanceUnit.CM) < 4 && (((DistanceSensor) Color).getDistance(DistanceUnit.CM) < 2))) {
                            /* Intake.setPower(-1);
@@ -331,7 +331,8 @@ public class Akash_RBR_World extends LinearOpMode {
                 .addDisplacementMarker(() -> {
                     Intake.setPower(1);
                     IntakeRoller.setPower(-0.8);
-
+                    stopRobot();
+                    sleep(2000);
                 })
 
 
@@ -362,16 +363,18 @@ public class Akash_RBR_World extends LinearOpMode {
                     HoldSlides();
                     BoardDropBox();
                     sleep(400);
-                    OpenBox();
-                    stopRobot();
-                    sleep(1500);
-
-
                 })
 
 
 
                 .forward(15)//change
+
+                .addDisplacementMarker(() -> {
+                    stopRobot();
+                    sleep(1000);
+
+                })
+                
 
                 .build();
 
@@ -558,14 +561,19 @@ public class Akash_RBR_World extends LinearOpMode {
                     }
                 }
 
+                //Lowering the Slides
                 drive.followTrajectorySequence(pos1_deposit);
-                backwardRobot();
-                sleep(200);
+                OpenBox();
                 SlidePower(slidePower + 0.2);
-                sleep(250);
-                HoldSlides();
+                sleep(1100); //Same for going up
+                HoldSlides(); //Why is this here
                 IntakeBox();
-                StopSlides();
+                sleep(300);
+
+
+                //drive.followTrajectorySequence(traj3);
+                SlideDown();
+                sleep(300);
 
 
                 //Cycle 1
@@ -590,6 +598,12 @@ public class Akash_RBR_World extends LinearOpMode {
                 }
 
                 drive.followTrajectorySequence(pos1_deposit);
+                OpenBox();
+                SlidePower(slidePower + 0.2);
+                sleep(1100); //Same for going up
+                HoldSlides(); //Why is this here
+                IntakeBox();
+                sleep(300);
                 drive.followTrajectorySequence(pos1_cycle_adjust); //move to left a little for deposition
 
 

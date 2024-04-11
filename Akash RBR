@@ -305,7 +305,7 @@ public class Akash_RBR_World extends LinearOpMode {
                     .waitSeconds(.5)
                 })
 
- */             .back(3)
+ */             .back(3.2)
 
 
 
@@ -325,8 +325,6 @@ public class Akash_RBR_World extends LinearOpMode {
                             telemetry.update();
                         }
                     }
-                    .addDisplacment
-
 
                 })
                 .waitSeconds(0.5)
@@ -351,9 +349,13 @@ public class Akash_RBR_World extends LinearOpMode {
 
                 .lineToConstantHeading(new Vector2d(51, 75))
                 .strafeLeft(27)
-
-                /*
                 .addSpatialMarker(new Vector2d(51, 75), () -> {
+
+
+                })
+
+                .addSpatialMarker(new Vector2d(51, 75), () -> {
+                    CloseBox();
                     IntakeBox();
                     SlidePower(slidePower);
                     sleep(waitTime + 400);
@@ -361,11 +363,13 @@ public class Akash_RBR_World extends LinearOpMode {
                     BoardDropBox();
                     sleep(400);
                     OpenBox();
+                    stopRobot();
+                    sleep(1500);
+
 
                 })
 
 
-                 */
 
                 .forward(15)//change
 
@@ -374,7 +378,6 @@ public class Akash_RBR_World extends LinearOpMode {
 
         TrajectorySequence pos1_cycle = drive.trajectorySequenceBuilder(pos1_deposit.end())
 
-                .back(7)
                 .lineToConstantHeading(new Vector2d(51, 75))
                 .lineToLinearHeading(new Pose2d(47, -2, Math.toRadians(90)))
                 .lineToLinearHeading(new Pose2d(47, -14, Math.toRadians(90)))
@@ -557,14 +560,13 @@ public class Akash_RBR_World extends LinearOpMode {
 
                 drive.followTrajectorySequence(pos1_deposit);
                 backwardRobot();
-                /*
-                sleep(400);
+                sleep(200);
+                SlidePower(slidePower + 0.2);
+                sleep(250);
+                HoldSlides();
                 IntakeBox();
-                OpenBox();
-                sleep(waitTimev2);
-                SlidePower(-1 * slidePower - 0.2); //Slides Down
-                DownLimit();
-                 */
+                StopSlides();
+
 
                 //Cycle 1
                 drive.followTrajectorySequence(pos1_cycle);
@@ -917,8 +919,8 @@ public class Akash_RBR_World extends LinearOpMode {
     }
 
     private void SlidePower(double p){
-        SlideR.setPower(p);
-        SlideL.setPower(-p);
+        SlideR.setPower(-p);
+        SlideL.setPower(p);
 
     }
 

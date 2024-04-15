@@ -411,17 +411,11 @@ public class Akash_RBR_World extends LinearOpMode {
         //change
 
 
-        TrajectorySequence pos1_depositp3 = drive.trajectorySequenceBuilder(pos1_deposit.end())
-                .waitSeconds(1)
-                .forward(8)
-
-
-                .build();
-
-        TrajectorySequence pos1_depositp2 = drive.trajectorySequenceBuilder(pos1_depositp3.end())
-                .back(6)
-                .strafeLeft(13)
+        TrajectorySequence pos1_depositp2 = drive.trajectorySequenceBuilder(pos1_deposit.end())
+                .back(6) //Change to fix the interesting going back(needs to be fixed) 
+                .strafeLeft(9.5)
                 .forward(6)
+
 
 
                 .build();
@@ -466,7 +460,7 @@ public class Akash_RBR_World extends LinearOpMode {
                 .strafeRight(4)
                 .build();
 
-        TrajectorySequence pos1_park = drive.trajectorySequenceBuilder(pos3_traj2.end())
+        TrajectorySequence pos1_park = drive.trajectorySequenceBuilder(pos1_traj2.end())
 
                 .strafeRight(25)
                 .forward(15)
@@ -582,7 +576,7 @@ public class Akash_RBR_World extends LinearOpMode {
 
         TrajectorySequence pos2_depositp3 = drive.trajectorySequenceBuilder(pos2_deposit.end())
                 .back(4)
-                .strafeLeft(6)
+                .strafeLeft(7)
                 .forward(4)
                 .waitSeconds(0.5)
 
@@ -682,20 +676,19 @@ public class Akash_RBR_World extends LinearOpMode {
                 HoldSlides();
                 BoardDropBox();
 
-                drive.followTrajectorySequence(pos1_depositp2);
+                forwardRobot();
+                sleep(1000);
 
                 if((((DistanceSensor) ColorFront).getDistance(DistanceUnit.CM) < 1.5) && (((DistanceSensor) Color).getDistance(DistanceUnit.CM) < 2) ){
                     dropBox();
                 }
 
+                drive.followTrajectorySequence(pos1_depositp2);
 
-
-                drive.followTrajectorySequence(pos1_depositp3);
                 stopRobot();
                 sleep(500);
                 OpenBox();
-
-
+                sleep(200);
 
                 drive.followTrajectorySequence(pos1_traj2);
                 IntakeBox();
@@ -836,11 +829,12 @@ public class Akash_RBR_World extends LinearOpMode {
 
                 drive.followTrajectorySequence(pos2_depositp3);
                 OpenBox();
+                sleep(300);
                 SlidePower(slidePower);
                 sleep(400);
                 IntakeBox();
                 drive.followTrajectorySequence(pos2_traj2);
-                
+
                 SlideDown();
                 sleep(300);
 
@@ -1111,7 +1105,7 @@ public class Akash_RBR_World extends LinearOpMode {
     private void dropBox(){
         BucketHold.setPosition(0.53);
 
-        sleep(150);
+        sleep(120);
         BucketHold.setPosition(0.7);
         sleep(750);
 

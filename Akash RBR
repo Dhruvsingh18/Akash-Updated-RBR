@@ -319,8 +319,8 @@ public class RBR_World extends LinearOpMode {
 
                 //.strafeRight(13)
                 //.forward(15)
-                .lineToLinearHeading(new Pose2d(49, 80, Math.toRadians(90)))
-                .lineToLinearHeading(new Pose2d(49, 92, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d(52, 80, Math.toRadians(90))) //X Changed 49 bf
+                .lineToLinearHeading(new Pose2d(52, 92, Math.toRadians(90))) //X Changed 49 bf
 
                 .build();
 
@@ -601,8 +601,8 @@ public class RBR_World extends LinearOpMode {
                 .back(5)
                 //.strafeRight(27)
                 //.forward(15)
-                .lineToLinearHeading(new Pose2d(49, 80, Math.toRadians(90)))
-                .lineToLinearHeading(new Pose2d(49, 92, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d(52, 80, Math.toRadians(90))) //X Changed 49 bf
+                .lineToLinearHeading(new Pose2d(52, 92, Math.toRadians(90))) //X Changed 49 bf
 
                 .build();
 
